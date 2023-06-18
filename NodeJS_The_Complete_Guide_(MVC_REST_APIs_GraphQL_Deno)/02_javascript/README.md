@@ -25,3 +25,8 @@
 | Data types can be switched dynamically | Primitive and reference types            | Can perform a broad variety of tasks      |
 
 
+### Useful Resources & Links
+
+MDN JavaScript Tutorial: [https://developer.mozilla.org/en-US/docs/Learn/JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript)
+
+Academind JS Resources: [https://academind.com/learn/javascript](https://academind.com/learn/javascript)
