@@ -119,7 +119,7 @@ fragment companyDetails on Company {
 ### Introduction to Mutations
 Mutations can be used to delete records, update them or even create new records.
 
-![Resolve Function](https://github.com/lcycstudio/nodejs/blob/master/GraphQL_with_React_The_Complete_Developers_Guide/04_fetching_data_with_queries/mutations.png)
+![Mutations](https://github.com/lcycstudio/nodejs/blob/master/GraphQL_with_React_The_Complete_Developers_Guide/04_fetching_data_with_queries/mutations.png)
 
 
 
@@ -128,18 +128,19 @@ Mutations can be used to delete records, update them or even create new records.
 #### GraphiQL Docs
 A GraphQL schema provides a root type for each kind of operation.
 
+```
 query: RootQueryType
 mutation: Mutation
+```
+
 
 #### Mutation
-No Description
-
-addUser(
+```addUser(
 firstName: String!
 age: Int!
 companyId: String
 ): User
-
+```
 
 #### Add User
 `schema.js`
