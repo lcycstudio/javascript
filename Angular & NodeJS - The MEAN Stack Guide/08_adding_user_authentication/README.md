@@ -165,7 +165,7 @@ export class AuthService {
 
 #### SPA Authentication
 
-![SPA Authentication](https://github.com/lcycstudio/nodejs/blob/master/Angular%20%26%20NodeJS%20-%20The%20MEAN%20Stack%20Guide/08_adding_user_authentication/spa.png)
+![SPA Authentication](https://github.com/lcycstudio/nodejs/blob/master/Angular%20%26%20NodeJS%20-%20The%20MEAN%20Stack%20Guide/08_adding_user_authentication/spa_auth.png)
 
 
 

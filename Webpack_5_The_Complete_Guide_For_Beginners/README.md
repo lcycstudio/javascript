@@ -2,4 +2,4 @@
 
 ## [Course Link](https://www.udemy.com/course/webpack-from-beginner-to-advanced/)
 
-## Course Certificate
+## Course Completion Certificate
