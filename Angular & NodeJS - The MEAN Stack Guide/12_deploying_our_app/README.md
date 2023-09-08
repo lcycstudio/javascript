@@ -93,7 +93,7 @@ web: node server.js
 
 Build the Angular Project
 ```bash
-npm build --prod
+npm run build --prod
 ```
 
 `two-separate-apps/src/environments/environment.prod.ts`
@@ -202,7 +202,7 @@ module.exports = app;
 ```
 
 ```bash
-npm build --prod
+npm run build --prod
 ```
 
 Compress everything inside `backend` folder into a zip file `Archive.zip`.
