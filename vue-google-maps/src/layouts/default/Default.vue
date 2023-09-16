@@ -1,9 +1,10 @@
 <template>
   <v-app>
     <div id="app-container">
-      <InfoContainer :searchList="searchList" @searchLocation="onSearchLocation" @filterLocation="onFilterLocation"
-        @clearList="onClearList" @removeItem="onRemoveItem" />
-      <MapContainer :searchText="searchText" :markerList="markerList" :searchTime="searchTime" :myLocation="myLocation" />
+      <InfoContainer :hasLocation="hasLocation" @searchLocation="onSearchLocation" @filterLocation="onFilterLocation"
+        @clearList="onClearList" />
+      <MapContainer :searchText="searchText" :markerList="markerList" :searchTime="searchTime"
+        @emitLocation="emitLocation" />
     </div>
   </v-app>
 </template>
@@ -22,10 +23,9 @@ export default {
   data() {
     return {
       searchText: "" as string,
-      searchList: [] as Array<SearchItemIF>,
       markerList: [] as Array<SearchItemIF>,
       searchTime: {} as DateTimeIF,
-      myLocation: {} as LocationIF,
+      hasLocation: false,
     };
   },
   methods: {
@@ -38,12 +38,7 @@ export default {
           gmt: result.time.toTimeString().split(' ')[1],
           timezone: '(' + result.time.toTimeString().split('(')[1],
         }
-        this.searchList = result.places.map((item: any) => ({
-          location: item,
-          checked: true,
-          value: 1
-        }))
-        this.markerList = this.searchList
+        this.markerList = result.places
       }
     },
     onFilterLocation: function (places: Array<SearchItemIF>) {
@@ -51,31 +46,29 @@ export default {
         this.markerList = places.filter((item) => (item.value === 1))
       }
     },
-    onRemoveItem: function (index: number) {
-      this.searchList = [...this.searchList.slice(0, index), ...this.searchList.slice(index + 1)]
-      this.markerList = [...this.markerList.slice(0, index), ...this.markerList.slice(index + 1)]
-    },
     onClearList: function () {
-      this.searchList = []
       this.markerList = []
       this.searchText = ''
     },
+    emitLocation: function (res: boolean) {
+      this.hasLocation = res
+    }
   },
   mounted() {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const lat = position.coords.latitude
-          const lng = position.coords.longitude
-          this.myLocation = { lat: lat, lng: lng }
-        },
-        (error) => {
-          alert('Error getting user location')
-        }
-      )
-    } else {
-      alert("Geolocation is not supported by this browser.")
-    }
+    // if ("geolocation" in navigator) {
+    //   navigator.geolocation.getCurrentPosition(
+    //     (position) => {
+    //       const lat = position.coords.latitude
+    //       const lng = position.coords.longitude
+    //       this.myLocation = { lat: lat, lng: lng }
+    //     },
+    //     (error) => {
+    //       alert('Error getting user location')
+    //     }
+    //   )
+    // } else {
+    //   alert("Geolocation is not supported by this browser.")
+    // }
   }
 }
 </script>

@@ -1,7 +1,12 @@
 <template>
     <div id="map-container">
         <v-container>
-            <div class="text-h4 pl-3">Google Map</div>
+            <div id="map-title" class="text-h4 pl-3">
+                <span>Google Map</span>
+                <v-btn id="map-location-btn" class="ma-2" size="small" color="primary" @click="getLocation">
+                    Get My Location <v-icon end icon="mdi-crosshairs"></v-icon>
+                </v-btn>
+            </div>
             <div class="text-body-1 pl-4" v-if="thisText">Latest search: {{ thisText }} </div>
             <div class="text-body-1 pl-4" v-if="thisTime?.time">
                 Local time:
@@ -32,10 +37,7 @@ export default {
         markerList: Array<SearchItemIF>,
         searchTime: {
             type: Object as () => DateTimeIF,
-        },
-        myLocation: {
-            type: Object as () => LocationIF
-        },
+        }
     },
     data() {
         return {
@@ -44,16 +46,51 @@ export default {
             thisText: this.searchText,
             thisList: this.markerList,
             thisTime: this.searchTime,
-            myPlace: { lat: this.myLocation?.lat, lng: this.myLocation?.lng },
+            location: {} as LocationIF,
+        }
+    },
+    emits: ['emitLocation'],
+    setup(props, ctx) {
+        ctx.emit('emitLocation')
+    },
+    methods: {
+        getLocation: function () {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const lat = position.coords.latitude
+                        const lng = position.coords.longitude
+                        this.location = { lat: lat, lng: lng }
+                        const thisLoader = this.loader as Loader
+                        thisLoader
+                            .load()
+                            .then((google) => {
+                                this.map = new google.maps.Map(
+                                    document.getElementById("vue-map") as HTMLElement,
+                                    {
+                                        center: { lat: lat, lng: lng },
+                                        zoom: 13,
+                                        mapTypeId: 'roadmap',
+                                    }
+                                )
+                                this.$emit('emitLocation', true)
+                            })
+                            .catch(error => {
+                                alert(error);
+                            });
+                    },
+                    (error) => {
+                        alert('Error getting user location')
+                    }
+                )
+            } else {
+                alert("Geolocation is not supported by this browser.")
+            }
         }
     },
     watch: {
         searchText: function (newValue, oldValue) {
             this.thisText = newValue ? newValue : oldValue;
-            this.$emit('addLocation', {
-                location: newValue,
-                selected: true
-            })
         },
         markerList: function (newValue, _) {
             this.thisList = newValue
@@ -66,7 +103,7 @@ export default {
                         const map = new google.maps.Map(
                             document.getElementById("vue-map") as HTMLElement,
                             {
-                                center: this.myPlace,
+                                center: this.location,
                                 zoom: 13,
                                 mapTypeId: 'roadmap',
                             }
@@ -113,7 +150,7 @@ export default {
                             const map = new google.maps.Map(
                                 document.getElementById("vue-map") as HTMLElement,
                                 {
-                                    center: this.myPlace,
+                                    center: this.location,
                                     zoom: 13,
                                     mapTypeId: 'roadmap',
                                 }
@@ -125,25 +162,6 @@ export default {
         searchTime: function (newValue, _) {
             this.thisTime = newValue
         },
-        myLocation: function (newValue, _) {
-            this.myPlace = { lat: newValue?.lat, lng: newValue?.lng }
-            const thisLoader = this.loader as Loader
-            thisLoader
-                .load()
-                .then((google) => {
-                    this.map = new google.maps.Map(
-                        document.getElementById("vue-map") as HTMLElement,
-                        {
-                            center: this.myPlace,
-                            zoom: 13,
-                            mapTypeId: 'roadmap',
-                        }
-                    )
-                })
-                .catch(error => {
-                    alert(error);
-                });
-        }
     },
     mounted() {
         this.loader = new Loader({
@@ -151,6 +169,22 @@ export default {
             version: "weekly",
             libraries: ["places"]
         })
+        const thisLoader = this.loader as Loader
+        thisLoader
+            .load()
+            .then((google) => {
+                this.map = new google.maps.Map(
+                    document.getElementById("vue-map") as HTMLElement,
+                    {
+                        center: { lat: 40.749933, lng: -73.98633 },
+                        zoom: 13,
+                        mapTypeId: 'roadmap',
+                    }
+                )
+            })
+            .catch(error => {
+                alert(error);
+            });
     }
 }
 </script>
@@ -159,6 +193,12 @@ export default {
 #map-container {
     width: 60%;
     height: 600px;
+}
+
+#map-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #vue-map {
