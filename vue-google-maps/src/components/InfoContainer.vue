@@ -94,7 +94,6 @@ export default defineComponent({
             this.$emit('filterLocation', currentList)
         },
         updatePage: function (pageIndex: number) {
-            console.info('pageIndex: ', pageIndex)
             let start = (pageIndex - 1) * this.pageSize
             let end = pageIndex * this.pageSize
             this.page = pageIndex

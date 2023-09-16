@@ -38,7 +38,7 @@ export default {
           gmt: result.time.toTimeString().split(' ')[1],
           timezone: '(' + result.time.toTimeString().split('(')[1],
         }
-        this.markerList = result.places
+        this.markerList = result.places.filter((item: any) => (item.value === 1))
       }
     },
     onFilterLocation: function (places: Array<SearchItemIF>) {
