@@ -47,9 +47,8 @@ export default {
       }
     },
     onFilterLocation: function (places: Array<SearchItemIF>) {
-      console.info('places: ', places)
       if (places && places.length > 0) {
-        this.markerList = places.filter((item) => (item.checked))
+        this.markerList = places.filter((item) => (item.value === 1))
       }
     },
     onRemoveItem: function (index: number) {
@@ -59,6 +58,7 @@ export default {
     onClearList: function () {
       this.searchList = []
       this.markerList = []
+      this.searchText = ''
     },
   },
   mounted() {
@@ -70,11 +70,11 @@ export default {
           this.myLocation = { lat: lat, lng: lng }
         },
         (error) => {
-          console.error("Error getting user location:", error)
+          alert('Error getting user location')
         }
       )
     } else {
-      console.error("Geolocation is not supported by this browser.")
+      alert("Geolocation is not supported by this browser.")
     }
   }
 }
@@ -84,5 +84,12 @@ export default {
 #app-container {
   display: flex;
   flex-direction: row;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  border: 5px solid #d3d3d3;
+  border-radius: 15px;
 }
 </style>

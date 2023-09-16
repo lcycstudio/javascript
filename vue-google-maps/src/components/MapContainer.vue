@@ -1,18 +1,24 @@
 <template>
-    <v-container id="map-container">
-        <div class="text-h4 pl-3">Google Map</div>
-        <div class="text-body-1 pl-4" v-if="thisText">Latest search: {{ thisText }} </div>
-        <div class="text-body-1 pl-4" v-if="thisTime?.time">
-            Local time:
-            {{ thisTime?.time }}
-            {{ thisTime?.date }}
-            {{ thisTime?.gmt }}
-            {{ thisTime?.timezone }}
-        </div>
+    <div id="map-container">
         <v-container>
-            <div id="vue-map"></div>
+            <div class="text-h4 pl-3">Google Map</div>
+            <div class="text-body-1 pl-4" v-if="thisText">Latest search: {{ thisText }} </div>
+            <div class="text-body-1 pl-4" v-if="thisTime?.time">
+                Local time:
+                {{ thisTime?.time }}
+                {{ thisTime?.date }}
+                {{ thisTime?.gmt }}
+                {{ thisTime?.timezone }}
+            </div>
+            <div class="text-body-1 pl-4" v-if="markerList?.length === 1">
+                <div>Current Select: {{ markerList[0].location.name }}</div>
+                <div>{{ markerList[0].location.formatted_address }}</div>
+            </div>
+            <v-container>
+                <div id="vue-map"></div>
+            </v-container>
         </v-container>
-    </v-container>
+    </div>
 </template>
 
 <script lang="ts">
@@ -82,7 +88,7 @@ export default {
                             markers.push(
                                 new google.maps.Marker({
                                     map,
-                                    icon,
+                                    // icon,
                                     title: place.location.name,
                                     position: place.location.geometry.location
                                 })
@@ -98,6 +104,22 @@ export default {
                     .catch(error => {
                         alert(error)
                     });
+            } else {
+                if (this.loader) {
+                    const loader2 = this.loader as Loader
+                    loader2
+                        .load()
+                        .then((google) => {
+                            const map = new google.maps.Map(
+                                document.getElementById("vue-map") as HTMLElement,
+                                {
+                                    center: this.myPlace,
+                                    zoom: 13,
+                                    mapTypeId: 'roadmap',
+                                }
+                            )
+                        })
+                }
             }
         },
         searchTime: function (newValue, _) {
@@ -125,7 +147,7 @@ export default {
     },
     mounted() {
         this.loader = new Loader({
-            apiKey: "",
+            apiKey: import.meta.env.VITE_API_KEY!,
             version: "weekly",
             libraries: ["places"]
         })
@@ -136,7 +158,7 @@ export default {
 <style>
 #map-container {
     width: 60%;
-    height: 500px;
+    height: 600px;
 }
 
 #vue-map {

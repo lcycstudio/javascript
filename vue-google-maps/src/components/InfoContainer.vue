@@ -15,7 +15,7 @@
             <v-card class="my-4 mx-auto" v-if="thisList && thisList.length > 0" v-for="(item, index) in thisList"
                 :key="index">
                 <div class="search-item">
-                    <div><v-checkbox v-model="item.checked" hide-details @click="toggleCheck(index)"></v-checkbox>
+                    <div><v-checkbox v-model="item.checked" hide-details @click="toggleCheck(index, $event)"></v-checkbox>
                     </div>
                     <div class="search-item-text" @click="onSelectItem(index)">
                         <div class="font-weight-bold">{{ item.location.name }}</div>
@@ -71,15 +71,23 @@ export default defineComponent({
             const myInput = document.getElementById('search-input') as HTMLInputElement
             myInput.dispatchEvent(keyboardEvent)
         },
-        toggleCheck: function (index: number) {
-            console.info('this.thisList: ', this.thisList)
-            this.$emit('filterLocation', this.thisList)
+        toggleCheck: function (index: number, event: PointerEvent) {
+            const item = this.thisList![index]
+            const target = event.target as HTMLInputElement
+            const thisList = [
+                ...this.thisList!.slice(0, index),
+                { ...item, checked: target.checked, value: target.checked ? 1 : 0 },
+                ...this.thisList!.slice(index + 1)
+            ]
+            this.thisList = thisList
+            this.$emit('filterLocation', thisList)
         },
         clearText: function () {
             this.text = ''
         },
         clearList: function () {
             this.$emit('clearList')
+            this.text = ''
         },
         removeItem: function (index: number) {
             this.$emit('removeItem', index)
@@ -113,7 +121,7 @@ export default defineComponent({
     },
     mounted() {
         const loader = new Loader({
-            apiKey: "",
+            apiKey: import.meta.env.VITE_API_KEY!,
             version: "weekly",
             libraries: ["places"]
         })
@@ -153,7 +161,7 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 500px;
+    height: 600px;
     overflow-y: auto;
 }
 
