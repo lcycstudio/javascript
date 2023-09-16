@@ -1,12 +1,9 @@
 <template>
   <v-app>
     <div id="app-container">
-      <div id="info-container">
-        <InfoContainer :searchList="searchList" @searchLocation="onSearchLocation" />
-      </div>
-      <div id="map-container">
-        <MapContainer :searchText="defaultText" />
-      </div>
+      <InfoContainer :searchList="searchList" @searchLocation="onSearchLocation" @filterLocation="onFilterLocation"
+        @clearList="onClearList" @removeItem="onRemoveItem" />
+      <MapContainer :searchText="searchText" :markerList="markerList" :searchTime="searchTime" :myLocation="myLocation" />
     </div>
   </v-app>
 </template>
@@ -14,6 +11,7 @@
 <script lang="ts">
 import InfoContainer from '@/components/InfoContainer.vue';
 import MapContainer from '@/components/MapContainer.vue';
+import { LocationIF, DateTimeIF, SearchItemIF } from '@/interfaces/search';
 
 export default {
   name: "DefaultComponent",
@@ -23,26 +21,60 @@ export default {
   },
   data() {
     return {
-      defaultText: "Hello",
-      searchList: [
-        {
-          location: "Location 1",
-          image:
-            "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
-          selected: true,
-        },
-        {
-          location: "Location 2",
-          image:
-            "https://images.unsplash.com/photo-1415369629372-26f2fe60c467?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ",
-          selected: false,
-        },
-      ]
+      searchText: "" as string,
+      searchList: [] as Array<SearchItemIF>,
+      markerList: [] as Array<SearchItemIF>,
+      searchTime: {} as DateTimeIF,
+      myLocation: {} as LocationIF,
     };
   },
   methods: {
-    onSearchLocation(text: string) {
-      this.defaultText = text;
+    onSearchLocation: function (result: { text: string, time: Date, places: any }) {
+      if (result) {
+        this.searchText = result.text;
+        this.searchTime = {
+          time: result.time.toLocaleTimeString(),
+          date: result.time.toDateString(),
+          gmt: result.time.toTimeString().split(' ')[1],
+          timezone: '(' + result.time.toTimeString().split('(')[1],
+        }
+        this.searchList = result.places.map((item: any) => ({
+          location: item,
+          checked: true,
+          value: 1
+        }))
+        this.markerList = this.searchList
+      }
+    },
+    onFilterLocation: function (places: Array<SearchItemIF>) {
+      console.info('places: ', places)
+      if (places && places.length > 0) {
+        this.markerList = places.filter((item) => (item.checked))
+      }
+    },
+    onRemoveItem: function (index: number) {
+      this.searchList = [...this.searchList.slice(0, index), ...this.searchList.slice(index + 1)]
+      this.markerList = [...this.markerList.slice(0, index), ...this.markerList.slice(index + 1)]
+    },
+    onClearList: function () {
+      this.searchList = []
+      this.markerList = []
+    },
+  },
+  mounted() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude
+          const lng = position.coords.longitude
+          this.myLocation = { lat: lat, lng: lng }
+        },
+        (error) => {
+          console.error("Error getting user location:", error)
+        }
+      )
+    } else {
+      console.error("Geolocation is not supported by this browser.")
     }
   }
 }
@@ -52,16 +84,5 @@ export default {
 #app-container {
   display: flex;
   flex-direction: row;
-}
-
-#info-container {
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#map-container {
-  width: 60%;
 }
 </style>
