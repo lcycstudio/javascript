@@ -12,7 +12,7 @@
 <script lang="ts">
 import InfoContainer from '@/components/InfoContainer.vue';
 import MapContainer from '@/components/MapContainer.vue';
-import { LocationIF, DateTimeIF, SearchItemIF } from '@/interfaces/search';
+import { DateTimeIF, SearchItemIF } from '@/interfaces/search';
 
 export default {
   name: "DefaultComponent",
