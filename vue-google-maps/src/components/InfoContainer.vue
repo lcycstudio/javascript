@@ -113,7 +113,7 @@ export default defineComponent({
     },
     mounted() {
         const loader = new Loader({
-            apiKey: "AIzaSyA1IgTfCbQdxG5ISLhZAgxQK98hD_eweqA",
+            apiKey: "",
             version: "weekly",
             libraries: ["places"]
         })
