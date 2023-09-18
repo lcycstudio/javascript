@@ -32,6 +32,10 @@
 
 ### Starting Project
 
+[JavaScript Code](<https://github.com/lcycstudio/javascript/tree/master/React%20-%20The%20Complete%20Guide%202023%20(incl.%20React%20Router%20%26%20Redux)/02_javascript_refresher/js-code>)
+
+[React Code](<https://github.com/lcycstudio/javascript/tree/master/React%20-%20The%20Complete%20Guide%202023%20(incl.%20React%20Router%20%26%20Redux)/02_javascript_refresher/react-code>)
+
 ### Adding JavaScript To A Page & How React Projects Differ
 
 ### React Projects Use a Build Process
