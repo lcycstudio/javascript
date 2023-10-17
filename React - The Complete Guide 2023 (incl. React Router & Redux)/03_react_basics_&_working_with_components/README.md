@@ -83,7 +83,7 @@ JSX = "HTML in JavaScript"
 
 #### Understanding JSX
 
-[JSX](<https://github.com/lcycstudio/javascript/blob/master/React%20-%20The%20Complete%20Guide%202023%20(incl.%20React%20Router%20%26%20Redux)/03_react_basics_%26_working_with_components/jsx.png>)
+![JSX](<https://github.com/lcycstudio/javascript/blob/master/React%20-%20The%20Complete%20Guide%202023%20(incl.%20React%20Router%20%26%20Redux)/03_react_basics_%26_working_with_components/jsx.png>)
 
 ### How React Works
 
