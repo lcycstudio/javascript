@@ -1,6 +1,7 @@
 ## Section 01: Getting Started
 
 #### Table of Contents
+
 - Introduction
 - What is MEAN?
 - Join our Online Learning Community
@@ -14,13 +15,10 @@
 - How To Get The Most Out Of This Course
 - Section Resources
 
-
 ### What is a Single Page Application (SPA)?
 
-![SPA Authentication](https://github.com/lcycstudio/nodejs/blob/master/Angular%20%26%20NodeJS%20-%20The%20MEAN%20Stack%20Guide/01_getting_started/spa.png)
-
+![SPA Authentication](/Angular%20&%20NodeJS%20-%20The%20MEAN%20Stack%20Guide/01_getting_started/spa.png)
 
 ### How Does the MEAN Stack Work?
 
-![SPA Authentication](https://github.com/lcycstudio/nodejs/blob/master/Angular%20%26%20NodeJS%20-%20The%20MEAN%20Stack%20Guide/01_getting_started/mean.png)
-
+![SPA Authentication](/Angular%20&%20NodeJS%20-%20The%20MEAN%20Stack%20Guide/01_getting_started/mean.png)

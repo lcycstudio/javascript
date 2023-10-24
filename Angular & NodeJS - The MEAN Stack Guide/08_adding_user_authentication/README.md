@@ -1,6 +1,7 @@
 ## Section 08: Adding User Authentication
 
 #### Table of Contents
+
 - Module Introduction
 - Adding the Login Input Fields
 - Handling User Input
@@ -22,10 +23,7 @@
 - Saving the Token in the Local Storage
 - Section Resources
 
-
 ### Module Introduction
-
-
 
 ### Adding the Login Input Fields
 
@@ -35,11 +33,7 @@
 
 `code/src/app/auth/login/login.component.ts`
 
-
-
 ### Handling User Input
-
-
 
 ### Adding the Signup Screen
 
@@ -50,6 +44,7 @@
 `code/src/app/auth/signup/signup.component.ts`
 
 `code/src/app/header/header.component.html`
+
 ```html
 <li *ngIf="!userIsAuthenticated">
   <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
@@ -59,29 +54,29 @@
 </li>
 ```
 
-
-
 ### Creating the User Model
 
 `code/backend/app.js`
+
 ```js
 app.use("/api/user", userRoutes);
 ```
 
 Install mongoose-unique-validator
+
 ```bash
 npm install mongoose-unique-validator
 ```
 
-
 `code/backend/models/user.js`
+
 ```js
 const mongoose = require("mongoose");
 const uniqueValidator = require("mongoose-unique-validator");
 
 const userSchema = mongoose.Schema({
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  password: { type: String, required: true },
 });
 
 userSchema.plugin(uniqueValidator);
@@ -89,11 +84,10 @@ userSchema.plugin(uniqueValidator);
 module.exports = mongoose.model("User", userSchema);
 ```
 
-
-
 ### Creating a New User Upon Request
 
 `code/backend/routes/user.js`
+
 ```js
 const express = require("express");
 const bcrypt = require("bcrypt");
@@ -104,22 +98,22 @@ const User = require("../models/user");
 const router = express.Router();
 
 router.post("/signup", (req, res, next) => {
-  bcrypt.hash(req.body.password, 10).then(hash => {
+  bcrypt.hash(req.body.password, 10).then((hash) => {
     const user = new User({
       email: req.body.email,
-      password: hash
+      password: hash,
     });
     user
       .save()
-      .then(result => {
+      .then((result) => {
         res.status(201).json({
           message: "User created!",
-          result: result
+          result: result,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         res.status(500).json({
-          error: err
+          error: err,
         });
       });
   });
@@ -129,6 +123,7 @@ router.post("/signup", (req, res, next) => {
 ### Connecting Angular to the Backend
 
 `code/src/app/auth/auth.service.ts`
+
 ```js
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
@@ -159,41 +154,39 @@ export class AuthService {
 };
 ```
 
-
-
 ### Understanding SPA Authentication
 
 #### SPA Authentication
 
-![SPA Authentication](https://github.com/lcycstudio/nodejs/blob/master/Angular%20%26%20NodeJS%20-%20The%20MEAN%20Stack%20Guide/08_adding_user_authentication/spa_auth.png)
-
-
+![SPA Authentication](/Angular%20&%20NodeJS%20-%20The%20MEAN%20Stack%20Guide/08_adding_user_authentication/spa_auth.png)
 
 ### Implementing SPA Authentication
 
 Install `bcrypt` package
+
 ```bash
 npm install bcrypt --save
 ```
 
 `code/backend/routes/user.js`
+
 ```js
 router.post("/login", (req, res, next) => {
   let fetchedUser;
   User.findOne({ email: req.body.email })
-    .then(user => {
+    .then((user) => {
       if (!user) {
         return res.status(401).json({
-          message: "Auth failed"
+          message: "Auth failed",
         });
       }
       fetchedUser = user;
       return bcrypt.compare(req.body.password, user.password);
     })
-    .then(result => {
+    .then((result) => {
       if (!result) {
         return res.status(401).json({
-          message: "Auth failed"
+          message: "Auth failed",
         });
       }
       const token = jwt.sign(
@@ -203,22 +196,21 @@ router.post("/login", (req, res, next) => {
       );
       res.status(200).json({
         token: token,
-        expiresIn: 3600
+        expiresIn: 3600,
       });
     })
-    .catch(err => {
+    .catch((err) => {
       return res.status(401).json({
-        message: "Auth failed"
+        message: "Auth failed",
       });
     });
 });
 ```
 
-
-
 ### Sending the Token to the Frontend
 
 `code/src/app/auth/auth.service.ts`
+
 ```js
 login(email: string, password: string) {
   const authData: AuthData = { email: email, password: password };
@@ -246,6 +238,7 @@ login(email: string, password: string) {
 ```
 
 `code/src/app/auth/login/login.component.ts`
+
 ```js
 export class LoginComponent {
   isLoading = false;
@@ -265,7 +258,9 @@ export class LoginComponent {
 ### Adding Middleware to Protect Routes
 
 #### Server Side
+
 `code/backend/middleware/check-auth.js`
+
 ```js
 const jwt = require("jsonwebtoken");
 
@@ -281,7 +276,9 @@ module.exports = (req, res, next) => {
 ```
 
 #### Client Side
+
 `code/backend/routes/posts.js`
+
 ```js
 router.post(
   "",
@@ -300,12 +297,12 @@ router.put(
 ...
 ```
 
-
-
 ### Adding the Token to Authenticate Requests
 
 #### Client Side
+
 `code/src/app/auth/auth-interceptor.ts`
+
 ```js
 import {
   HttpInterceptor,
@@ -331,6 +328,7 @@ export class AuthInterceptor implements HttpInterceptor {
 ```
 
 `code/src/app/app.module.ts`
+
 ```js
   ...
   providers: [
@@ -341,6 +339,7 @@ export class AuthInterceptor implements HttpInterceptor {
 #### Server Side
 
 `code/backend/app.js`
+
 ```js
 app.use((req, res, next) => {
   ...
@@ -352,31 +351,33 @@ app.use((req, res, next) => {
 });
 ```
 
-
-
 ### Improving the UI Header to Reflect the Authentication Status
 
 #### Client Side
 
 `code/src/app/header/header.component.html`
+
 ```html
 <ul>
-    <li *ngIf="userIsAuthenticated">
-      <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Post</a>
-    </li>
-    <li *ngIf="!userIsAuthenticated">
-      <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
-    </li>
-    <li *ngIf="!userIsAuthenticated">
-      <a mat-button routerLink="/signup" routerLinkActive="mat-accent">Signup</a>
-    </li>
-    <li *ngIf="userIsAuthenticated">
-      <button mat-button (click)="onLogout()">Logout</button>
-    </li>
-  </ul>
+  <li *ngIf="userIsAuthenticated">
+    <a mat-button routerLink="/create" routerLinkActive="mat-accent"
+      >New Post</a
+    >
+  </li>
+  <li *ngIf="!userIsAuthenticated">
+    <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
+  </li>
+  <li *ngIf="!userIsAuthenticated">
+    <a mat-button routerLink="/signup" routerLinkActive="mat-accent">Signup</a>
+  </li>
+  <li *ngIf="userIsAuthenticated">
+    <button mat-button (click)="onLogout()">Logout</button>
+  </li>
+</ul>
 ```
 
 `code/src/app/auth/auth.service.ts`
+
 ```js
 export class AuthService {
   private isAuthenticated = false;
@@ -403,6 +404,7 @@ export class AuthService {
 ```
 
 `code/src/app/header/header.component.ts`
+
 ```js
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { Subscription } from "rxjs";
@@ -439,12 +441,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 }
 ```
 
-
-
 ### Improving the UI Messages to Reflect the Authentication Status
 
-
 `code/src/app/posts/post-list/post-list.component.ts`
+
 ```js
 export class PostListComponent implements OnInit, OnDestroy {
   ...
@@ -474,17 +474,18 @@ export class PostListComponent implements OnInit, OnDestroy {
 ```
 
 `code/src/app/posts/post-list/post-list.component.html`
-```html
-    <mat-action-row *ngIf="userIsAuthenticated">
-      <a mat-button color="primary" [routerLink]="['/edit', post.id]">EDIT</a>
-      <button mat-button color="warn" (click)="onDelete(post.id)">DELETE</button>
-    </mat-action-row>
-```
 
+```html
+<mat-action-row *ngIf="userIsAuthenticated">
+  <a mat-button color="primary" [routerLink]="['/edit', post.id]">EDIT</a>
+  <button mat-button color="warn" (click)="onDelete(post.id)">DELETE</button>
+</mat-action-row>
+```
 
 ### Connecting the Logout Button to the Authentication Status
 
 `code/src/app/auth/auth.service.ts`
+
 ```js
 export class AuthService {
   ...
@@ -499,15 +500,12 @@ export class AuthService {
 }
 ```
 
-
-
 ### Redirecting Users
-
-
 
 ### Adding Route Guards
 
 `code/src/app/auth/auth.guard.ts`
+
 ```js
 import {
   CanActivate,
@@ -538,6 +536,7 @@ export class AuthGuard implements CanActivate {
 ```
 
 `code/src/app/app-routing.module.ts`
+
 ```js
 const routes: Routes = [
   { path: "", component: PostListComponent },
@@ -554,10 +553,10 @@ const routes: Routes = [
 })
 ```
 
-
 ### Reflecting the Token Expiration in the UI
 
 `code/src/app/auth/auth.service.ts`
+
 ```js
 export class AuthService {
   private setAuthTimer(duration: number) {
@@ -584,15 +583,14 @@ export class AuthService {
 }
 ```
 
-
-
 ### Saving the Token in the Local Storage
 
 `code/src/app/auth/auth.service.ts`
+
 ```js
 export class AuthService {
   ...
-  
+
   private saveAuthData(token: string, expirationDate: Date) {
     localStorage.setItem("token", token);
     localStorage.setItem("expiration", expirationDate.toISOString());
@@ -641,6 +639,7 @@ export class AuthService {
 ```
 
 `code/src/app/app.component.ts`
+
 ```js
 import { Component, OnInit } from '@angular/core';
 
@@ -659,7 +658,6 @@ export class AppComponent implements OnInit {
   }
 }
 ```
-
 
 ### Section Resources
 

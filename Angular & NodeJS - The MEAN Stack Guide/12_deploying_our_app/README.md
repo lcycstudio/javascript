@@ -1,6 +1,7 @@
 ## Section 12: Deploying our App
 
 #### Table of Contents
+
 - Module Introduction
 - Deployment Options
 - The Procfile File
@@ -10,36 +11,32 @@
 - Using the Integrated Approach -- One App
 - Section Resources
 
-
-
 ### Module Introduction
 
 #### Deployment
+
 Shipping our app
-
-
 
 ### Deployment Options
 
-![Deployment Options](https://github.com/lcycstudio/nodejs/blob/master/Angular%20%26%20NodeJS%20-%20The%20MEAN%20Stack%20Guide/12_deploying_our_app/deployment.png)
-
-
+![Deployment Options](/Angular%20&%20NodeJS%20-%20The%20MEAN%20Stack%20Guide/12_deploying_our_app/deployment.png)
 
 ### The Procfile File
 
-Add `Procfile` to `two-separate-apps` folder
-`two-separate-apps/Procfile`
+Add `Procfile` to `two-separate-apps` folder `two-separate-apps/Procfile`
+
 ```
 web: node server.js
 ```
 
-
 ### Two Apps -- Deploying the REST API
 
 - Move `server.js` file to the `backend` folder
-- Make the change in `package.json` `"start:server": "nodemon ./backend/server.js"`
-- Make `package.json` for backend as well and remove all dependencies related to Angular
-`two-separate-apps/backend/package.json`
+- Make the change in `package.json`
+  `"start:server": "nodemon ./backend/server.js"`
+- Make `package.json` for backend as well and remove all dependencies related to
+  Angular `two-separate-apps/backend/package.json`
+
 ```js
 {
   "name": "mean-course",
@@ -58,6 +55,7 @@ web: node server.js
 ```
 
 #### AWS Elastic
+
 - Application Name: node-angular
 - Description: MEAN App
 - Create
@@ -76,69 +74,61 @@ web: node server.js
     - Save
   - Create Environment
 
-
 #### Possible Errors
+
 - MongoDB database needs to add IP of the AWS Elastic
 - CORS
-
-
 
 ### Two Apps -- The Public Bucket
 
 #### Public Bucket Checked
-![Publick Bucket](https://github.com/lcycstudio/nodejs/blob/master/Angular%20%26%20NodeJS%20-%20The%20MEAN%20Stack%20Guide/12_deploying_our_app/public_bucket.png)
 
+![Publick Bucket](/Angular%20&%20NodeJS%20-%20The%20MEAN%20Stack%20Guide/12_deploying_our_app/public_bucket.png)
 
 ### Two Apps -- Angular Deployment
 
 Build the Angular Project
+
 ```bash
 npm run build --prod
 ```
 
 `two-separate-apps/src/environments/environment.prod.ts`
+
 ```js
 export const environment = {
   production: true,
   // use your own backend url
-  apiUrl: "http://meantest-env.m5qm3nbaay.us-east-1.elasticbeanstalk.com/api"
+  apiUrl: "http://meantest-env.m5qm3nbaay.us-east-1.elasticbeanstalk.com/api",
 };
 ```
 
 #### Create an S3 Bucket
+
 - Upload all the files in the distribution folder
   - `two-separate-apps\angular.json`
     - "outputPath": "dist/mean-course",
 - Change Bucket Policy
+
   - Granting Read-Only Permission to an Anonymous User
 
-    {
-        "Version": "2012-10-17",
-        "Statement": {
-            {
-                "Sid": "AddPerm",
-                "Effect": "Allow",
-                "Principal": "*",
-                "Action": ["s3:GetObject"],
-                "Resource": ["arn:aws:s3:::examplebucket/*"]
-            }
-        }
-    }
+    { "Version": "2012-10-17", "Statement": { { "Sid": "AddPerm", "Effect":
+    "Allow", "Principal": "_", "Action": ["s3:GetObject"], "Resource":
+    ["arn:aws:s3:::examplebucket/_"] } } }
 
     - `examplebucket` is the bucket you just created
     - Save
+
 - Static website hosting
   - Use this bucket to host a website
   - Index document: `index.html`
   - Error document: `index.html`
   - Save
 
-
-
-
 ### Using the Integrated Approach -- One App
 
 `all-in-one-app\angular.json`
+
 ```json
 {
   ...,
@@ -148,6 +138,7 @@ export const environment = {
 ```
 
 `all-in-one-app\backend\app.js`
+
 ```js
 const path = require("path");
 const express = require("express");
@@ -207,8 +198,8 @@ npm run build --prod
 
 Compress everything inside `backend` folder into a zip file `Archive.zip`.
 
-
 #### AWS Elastic
+
 - Application Name: node-angular
 - Description: MEAN App
 - Create
@@ -226,7 +217,6 @@ Compress everything inside `backend` folder into a zip file `Archive.zip`.
       - JWT_KEY: secret_this_should_be_longer
     - Save
   - Create Environment
-
 
 ### Section Resources
 

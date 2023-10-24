@@ -1,6 +1,7 @@
 ## Section 08: Frontend Mutations
 
 #### Table of Contents
+
 - Mutations in React
 - Query Params
 - Defining Query Variables in React
@@ -11,9 +12,10 @@
 - Associating Mutations with a Component
 - Invoking Delete Mutations
 
-
 ### Mutations in React
+
 `addSong`
+
 ```js
 mutation {
   addSong(title:"Dog Call") {
@@ -25,7 +27,7 @@ mutation {
 
 ### Query Params
 
-![Mutation Add Song](https://github.com/lcycstudio/nodejs/blob/master/GraphQL_with_React_The_Complete_Developers_Guide/08_frontend_mutations/mutation_add_song.png)
+![Mutation Add Song](/GraphQL_with_React_The_Complete_Developers_Guide/08_frontend_mutations/mutation_add_song.png)
 
 ```js
 mutation AddSong($title: String) {
@@ -36,7 +38,6 @@ mutation AddSong($title: String) {
 }
 ```
 
-
 ### Defining Query Variables in React
 
 ### Navigating on Successful Mutation
@@ -46,7 +47,9 @@ mutation AddSong($title: String) {
 ### Refetching Queries
 
 ### Deletion by Mutation
+
 `DeleteSong`
+
 ```js
 mutation DeleteSong($id: ID) {
   deleteSong(id: $id) {
@@ -59,4 +62,3 @@ mutation DeleteSong($id: ID) {
 ### Associating Mutations with a Component
 
 ### Invoking Delete Mutations
-

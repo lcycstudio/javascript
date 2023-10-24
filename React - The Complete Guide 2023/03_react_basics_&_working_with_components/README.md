@@ -59,13 +59,14 @@ All user interfaces in the end are made up of components
 
 ### React Code Is Written In A "Declarative Way"!
 
-![React Component](<https://github.com/lcycstudio/javascript/blob/master/React%20-%20The%20Complete%20Guide%202023%20(incl.%20React%20Router%20%26%20Redux)/03_react_basics_%26_working_with_components/react.png>)
+![React Component](/React%20-%20The%20Complete%20Guide%202023/03_react_basics_&_working_with_components/react.png)
 
 #### React & Components
 
-- React allows you to create **re-usable** and **reactive** components consisting of HTML, CSS and JavaScript
-- React uses the **declarative approach** where we define the desired target state(s) and let React figure
-  out the actual JavaScript DOM instructions
+- React allows you to create **re-usable** and **reactive** components
+  consisting of HTML, CSS and JavaScript
+- React uses the **declarative approach** where we define the desired target
+  state(s) and let React figure out the actual JavaScript DOM instructions
 
 ### Creating a new React Project
 
@@ -83,7 +84,7 @@ JSX = "HTML in JavaScript"
 
 #### Understanding JSX
 
-![JSX](<https://github.com/lcycstudio/javascript/blob/master/React%20-%20The%20Complete%20Guide%202023%20(incl.%20React%20Router%20%26%20Redux)/03_react_basics_%26_working_with_components/jsx.png>)
+![JSX](/React%20-%20The%20Complete%20Guide%202023/03_react_basics_&_working_with_components/jsx.png)
 
 ### How React Works
 
@@ -99,10 +100,12 @@ document.getElementById("root").append(paragraph);
 
 #### Exercise: Working with JSX Code
 
-This is a quick exercise to get started with React and JSX code: Your task is to edit the JSX code of a
-provided React component such that it displays a `h1` element with the text "Exercise done!" on the page.
+This is a quick exercise to get started with React and JSX code: Your task is to
+edit the JSX code of a provided React component such that it displays a `h1`
+element with the text "Exercise done!" on the page.
 
-Important: The custom JSX code must be added inside the existing `<div>` element.
+Important: The custom JSX code must be added inside the existing `<div>`
+element.
 
 ```js
 import React from "react";
@@ -125,13 +128,15 @@ export default function App() {
 
 #### Exercise: Building a First Component
 
-Practice what you learned about components and **build a new React component on your own!**
+Practice what you learned about components and **build a new React component on
+your own!**
 
-Your task is to build a custom `<ExerciseComponent />` that outputs the text "First exercise - done!"
-on the screen.
+Your task is to build a custom `<ExerciseComponent />` that outputs the text
+"First exercise - done!" on the screen.
 
-Use the empty `ExerciseComponent.js` file for your new component code and output this component inside
-the already existing App component thereafter (replace the existing JSX code in App with your own component).
+Use the empty `ExerciseComponent.js` file for your new component code and output
+this component inside the already existing App component thereafter (replace the
+existing JSX code in App with your own component).
 
 The final app should display this basic output:
 
@@ -182,9 +187,10 @@ Props are the "attributes" of your "custom HTML elements" (Components)
 
 #### Exercise: Passing Data via "props"
 
-You're working on the UI prototype for an online shop and your task is to output **two product items**
-(via the `<Product />` component you find in the `Product.js` file) below the main page title
-(`"My Demo Shop"`) in the App component.
+You're working on the UI prototype for an online shop and your task is to output
+**two product items** (via the `<Product />` component you find in the
+`Product.js` file) below the main page title (`"My Demo Shop"`) in the App
+component.
 
 The final UI should look like this:
 
@@ -192,8 +198,9 @@ The final UI should look like this:
 My Demo Shop Product 1
 ```
 
-The **two product items** should use the **same component** (`<Product />`) but output **different data**
-(`title`, `price` & `description`). Data should be passed to the components (and output there) via `props`.
+The **two product items** should use the **same component** (`<Product />`) but
+output **different data** (`title`, `price` & `description`). Data should be
+passed to the components (and output there) via `props`.
 
 The **first product item** is expected to display the following information:
 
@@ -359,17 +366,18 @@ export default Card;
 
 #### Exercise: Component Composition
 
-You are working on a UI prototype for a "Todos" application. At the moment, the prototype displays some
-basic todos for learning React and a short info message.
+You are working on a UI prototype for a "Todos" application. At the moment, the
+prototype displays some basic todos for learning React and a short info message.
 
-Your task is to **optimize the code** and use React **component composition** to create a re-usable
-`<Card />` component that can be wrapped around different content (e.g., todo markup, info message markup).
+Your task is to **optimize the code** and use React **component composition** to
+create a re-usable `<Card />` component that can be wrapped around different
+content (e.g., todo markup, info message markup).
 
-The final UI should look like the initial UI - i.e., no styling changes are required. But the code should
-change and **embraces React's composability**.
+The final UI should look like the initial UI - i.e., no styling changes are
+required. But the code should change and **embraces React's composability**.
 
-Create the `<Card />` component in the already existing `Card.js` file and use a `<div>` as a main element
-in that component.
+Create the `<Card />` component in the already existing `Card.js` file and use a
+`<div>` as a main element in that component.
 
 `App.js`
 
@@ -464,7 +472,7 @@ li {
 
 [A First Summary](<https://github.com/lcycstudio/javascript/tree/master/React%20-%20The%20Complete%20Guide%202023%20(incl.%20React%20Router%20%26%20Redux)/03_react_basics_%26_working_with_components/code/11-finished>)
 
-![Finished Project](<https://github.com/lcycstudio/javascript/blob/master/React%20-%20The%20Complete%20Guide%202023%20(incl.%20React%20Router%20%26%20Redux)/03_react_basics_%26_working_with_components/done.png>)
+![Finished Project](/React%20-%20The%20Complete%20Guide%202023/03_react_basics_&_working_with_components/done.png)
 
 ### A Closer Look At JSX
 
@@ -522,56 +530,62 @@ const ExpenseDate = (props) => {
 
 #### Question 1: Which kind of code do you write when using React.js?
 
-Declarative JavaScript Code. With React.js, you define the "goal" (i.e. what should be shown on the
-screen) and let React figure out how to get there.
+Declarative JavaScript Code. With React.js, you define the "goal" (i.e. what
+should be shown on the screen) and let React figure out how to get there.
 
 #### Question 2: What is "JSX"?
 
-It's a special, non-standard syntax which is enabled in React projects. React projects like the ones
-we create via "create-react-app" support JSX syntax. It gets compiled to standard JS code behind the
-scenes.
+It's a special, non-standard syntax which is enabled in React projects. React
+projects like the ones we create via "create-react-app" support JSX syntax. It
+gets compiled to standard JS code behind the scenes.
 
 #### Question 3: Why is React all about "Components"?
 
-Every UI in the end is made up of multiple building blocks, called components, hence it makes sense
-to think about their user interfaces as "combinations of components". "Components" are really just a
-way of thinking about user interfaces. React embraces that concept and gives you tools to build
-components that you can then combine.
+Every UI in the end is made up of multiple building blocks, called components,
+hence it makes sense to think about their user interfaces as "combinations of
+components". "Components" are really just a way of thinking about user
+interfaces. React embraces that concept and gives you tools to build components
+that you can then combine.
 
 #### Question 4: What does "declarative" mean?
 
-You define the desired outcome (e.g., a target state or UI) and React figures out which JS commands
-need to be executed to bring that result to life.
+You define the desired outcome (e.g., a target state or UI) and React figures
+out which JS commands need to be executed to bring that result to life.
 
 #### Question 5: What is a "React Component"?
 
-It's a JavaScript function which typically returns HTML (JSX) code that should be displayed.
-It is a JS function that typically returns some HTML (or, to be precise: JSX) code which will be
-shown on the screen when that component is used.
+It's a JavaScript function which typically returns HTML (JSX) code that should
+be displayed. It is a JS function that typically returns some HTML (or, to be
+precise: JSX) code which will be shown on the screen when that component is
+used.
 
 #### Question 6: How many custom React components must a React app have?
 
-That's totally up to you. You can have as many React components as you want / need.
+That's totally up to you. You can have as many React components as you want /
+need.
 
 #### Question 7: Which statement is correct?
 
-With React, you build a component tree with one root component that's mounted into a DOM node.
+With React, you build a component tree with one root component that's mounted
+into a DOM node.
 
 #### Question 8: What does "component tree" mean?
 
-It means that you have a root node which then has more components nested beneath it. You build a
-tree by nesting components into each other - just as you build a HTML tree when building a standard
-HTML document.
+It means that you have a root node which then has more components nested beneath
+it. You build a tree by nesting components into each other - just as you build a
+HTML tree when building a standard HTML document.
 
 #### Question 9: How do you pass data between components?
 
-Via "custom HTML attributes" (known as "props"). You build your own "HTML elements" in the end,
-hence you can also define your own attributes (called "props" in React's world)
+Via "custom HTML attributes" (known as "props"). You build your own "HTML
+elements" in the end, hence you can also define your own attributes (called
+"props" in React's world)
 
 #### Question 10: How can you output dynamic data in React components (i.e. in the returned JSX code)?
 
-You can use single curly braces (opeing & closing) with any JS expression between them. You can't
-put block statements (e.g. if statements) between those curly braces but you can output any result
-of any JS expression by using this special feature.
+You can use single curly braces (opeing & closing) with any JS expression
+between them. You can't put block statements (e.g. if statements) between those
+curly braces but you can output any result of any JS expression by using this
+special feature.
 
 ### Module Resources

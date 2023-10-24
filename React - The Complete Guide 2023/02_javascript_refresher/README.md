@@ -48,12 +48,13 @@ Your code is transformed before it's handed off to the browser
 
 1. Raw, unprocessed React code won’t execute in the browser
    - JSX -- JSX is not a default JavaScript feature
-2. In addition, the code would not be optimized for production (e.g., not minified)
+2. In addition, the code would not be optimized for production (e.g., not
+   minified)
 
 React projects require a **build process** that transforms your code.
 
-`create-reat-app`, `vite`, etc. give you such a build process (no custom setup or
-tweaking needed)
+`create-reat-app`, `vite`, etc. give you such a build process (no custom setup
+or tweaking needed)
 
 ### "import" & "export"
 
@@ -115,17 +116,19 @@ import * as util from "./util.js";
 
 Variables are data containers
 
-![Variables](<https://github.com/lcycstudio/javascript/blob/master/React%20-%20The%20Complete%20Guide%202023%20(incl.%20React%20Router%20%26%20Redux)/02_javascript_refresher/variables.png>)
+![Variables](/React%20-%20The%20Complete%20Guide%202023/02_javascript_refresher/variables.png)
 
 #### Why Use Variables?
 
 **Reusability**
 
-Store a value in a variable once and use it as often and in as many places as needed
+Store a value in a variable once and use it as often and in as many places as
+needed
 
 **Readability**
 
-Organize your code over several lines rather than cramming everything into a single line
+Organize your code over several lines rather than cramming everything into a
+single line
 
 #### Variables vs Constants
 
@@ -216,11 +219,12 @@ But avoid adding too much whitespace
 
 #### Exercise: Working with Functions
 
-Your task is to write a new function that should be named `combine` and have the following characteristics:
+Your task is to write a new function that should be named `combine` and have the
+following characteristics:
 
 - Accept three input values
-- Calculate a new value based on the three input values: `a \* b / c`
-  (if a, b & c are the input values)
+- Calculate a new value based on the three input values: `a \* b / c` (if a, b &
+  c are the input values)
 - Return the calculated result
 
 ```js
@@ -280,14 +284,15 @@ console.log(editedHobbies);
 
 #### Exercise: Array Methods
 
-Your task is to add the missing logic to a transformToObjects() function that should transform
-a list of numbers into a list of JavaScript objects.
+Your task is to add the missing logic to a transformToObjects() function that
+should transform a list of numbers into a list of JavaScript objects.
 
-In the newly returned array, every object must have a val key and the input array's number as
-a value.
+In the newly returned array, every object must have a val key and the input
+array's number as a value.
 
-For example, for the provided input `[1, 2, 3]` the `transformToObjects([1, 2, 3])` function
-should return `[{val: 1}, {val: 2}, {val: 3}]`.
+For example, for the provided input `[1, 2, 3]` the
+`transformToObjects([1, 2, 3])` function should return
+`[{val: 1}, {val: 2}, {val: 3}]`.
 
 ```js
 function transformToObjects(numberArray) {
@@ -315,12 +320,13 @@ console.log(age);
 
 ### Destructuring in Function Parameter Lists
 
-The destructuring syntax explained in the previous lecture can also be used in **function parameter
-lists**.
+The destructuring syntax explained in the previous lecture can also be used in
+**function parameter lists**.
 
-For example, if a function accepts a parameter that will **contain an object** it can be
-destructured to "pull out" the object properties and make them available as **locally scoped
-variables** (i.e., variables only available inside the function body).
+For example, if a function accepts a parameter that will **contain an object**
+it can be destructured to "pull out" the object properties and make them
+available as **locally scoped variables** (i.e., variables only available inside
+the function body).
 
 Here's an example:
 
@@ -331,8 +337,8 @@ function storeOrder(order) {
 }
 ```
 
-Instead of accessing the `order` properties via the "dot notation" inside the `storeOrder` function
-body, you could use destructuring like this:
+Instead of accessing the `order` properties via the "dot notation" inside the
+`storeOrder` function body, you could use destructuring like this:
 
 ```js
 function storeOrder({ id, currency }) {
@@ -342,15 +348,16 @@ function storeOrder({ id, currency }) {
 }
 ```
 
-The destructuring syntax is the same as taught in the previous lecture - just without creating a
-constant or variable manually.
+The destructuring syntax is the same as taught in the previous lecture - just
+without creating a constant or variable manually.
 
-Instead, `id` and `currency` are _"pulled out"_ of the incoming object (i.e., the object passed as
-an argument to `storeOrder`).
+Instead, `id` and `currency` are _"pulled out"_ of the incoming object (i.e.,
+the object passed as an argument to `storeOrder`).
 
-It's very important to understand, that storeOrder **still only takes one parameter** in this
-example! It does **not** accept two parameters. Instead, it's one single parameter - an **object**
-which then just is destructured internally.
+It's very important to understand, that storeOrder **still only takes one
+parameter** in this example! It does **not** accept two parameters. Instead,
+it's one single parameter - an **object** which then just is destructured
+internally.
 
 The function would still be called like this:
 
@@ -454,7 +461,8 @@ init();
 
 - Objects = Reference Values
 - For objects (and array), the memory address is stored in the variable
-- The underlying value (i.e., the object / array) can be edited without changing that address
+- The underlying value (i.e., the object / array) can be edited without changing
+  that address
 - The value can therefore be edited without reassigning the variable
 - `["Sports", "Cooking"]` gets stored in the variable / constant in the memory
 
@@ -462,13 +470,16 @@ init();
 
 #### let & const
 
-Read more about `let`: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
+Read more about `let`:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
 
-Read more about `const`: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const
+Read more about `const`:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const
 
 #### ES6 Arrow Functions
 
-Read more: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+Read more:
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
 
 Arrow functions are a different way of creating functions in JavaScript.
 
@@ -498,7 +509,8 @@ const callMe = (name) => {
 
 **Important:**
 
-When having **no arguments**, you have to use empty parentheses in the function declaration:
+When having **no arguments**, you have to use empty parentheses in the function
+declaration:
 
 ```js
 const callMe = () => {
@@ -530,12 +542,15 @@ const returnMe = (name) => {
 
 #### Exports & Imports
 
-In React projects (and actually in all modern JavaScript projects), you split your code across multiple JavaScript files - so-called modules. You do this, to keep each file/ module focused and manageable.
+In React projects (and actually in all modern JavaScript projects), you split
+your code across multiple JavaScript files - so-called modules. You do this, to
+keep each file/ module focused and manageable.
 
-To still access functionality in another file, you need `export` (to make it available) and `import`
-(to get access) statements.
+To still access functionality in another file, you need `export` (to make it
+available) and `import` (to get access) statements.
 
-You got two different types of exports: **default** (unnamed) and **named** exports:
+You got two different types of exports: **default** (unnamed) and **named**
+exports:
 
 **default** => `export default ...;`
 
@@ -551,19 +566,24 @@ Surprisingly, `someNameOfYourChoice` is totally up to you.
 
 `import { someData } from './path/to/file.js';`
 
-A file can only contain one default and an unlimited amount of named exports. You can also mix the one default with any amount of named exports in one and the same file.
+A file can only contain one default and an unlimited amount of named exports.
+You can also mix the one default with any amount of named exports in one and the
+same file.
 
-When importing **named exports**, you can also import all named exports at once with the following syntax:
+When importing **named exports**, you can also import all named exports at once
+with the following syntax:
 
 `import \* as upToYou from './path/to/file.js';`
 
-`upToYou` is - well - up to you and simply bundles all exported variables/functions in one JavaScript object.
-For example, if you `export const someData = ... (/path/to/file.js )` you can access it on `upToYou` like this:
-`upToYou.someData`.
+`upToYou` is - well - up to you and simply bundles all exported
+variables/functions in one JavaScript object. For example, if you
+`export const someData = ... (/path/to/file.js )` you can access it on `upToYou`
+like this: `upToYou.someData`.
 
 #### Classes
 
-Classes are a feature which basically replace constructor functions and prototypes. You can define blueprints for JavaScript objects with them.
+Classes are a feature which basically replace constructor functions and
+prototypes. You can define blueprints for JavaScript objects with them.
 
 Like this:
 
@@ -578,9 +598,10 @@ const person = new Person();
 console.log(person.name); // prints 'Max'
 ```
 
-In the above example, not only the class but also a property of that class (=> `name`) is defined. The syntax
-you see there, is the "old" syntax for defining properties. In modern JavaScript projects (as the one used in
-this course), you can use the following, more convenient way of defining class properties:
+In the above example, not only the class but also a property of that class (=>
+`name`) is defined. The syntax you see there, is the "old" syntax for defining
+properties. In modern JavaScript projects (as the one used in this course), you
+can use the following, more convenient way of defining class properties:
 
 ```js
 class Person {
@@ -619,7 +640,8 @@ const person = new Person();
 person.printMyName();
 ```
 
-The second approach has the same advantage as all arrow functions have: The this keyword doesn't change its reference.
+The second approach has the same advantage as all arrow functions have: The this
+keyword doesn't change its reference.
 
 You can also use **inheritance** when using classes:
 
@@ -644,11 +666,14 @@ console.log(person.species); // prints 'human'
 
 The spread and rest operators actually use the same syntax: `...`
 
-Yes, that is the operator - just three dots. It's usage determines whether you're using it as the spread or rest operator.
+Yes, that is the operator - just three dots. It's usage determines whether
+you're using it as the spread or rest operator.
 
 **Using the Spread Operator:**
 
-The spread operator allows you to pull elements out of an array (=> split the array into a list of its elements) or pull the properties out of an object. Here are two examples:
+The spread operator allows you to pull elements out of an array (=> split the
+array into a list of its elements) or pull the properties out of an object. Here
+are two examples:
 
 ```js
 const oldArray = [1, 2, 3];
@@ -676,14 +701,16 @@ age: 28
 }
 ```
 
-The spread operator is extremely useful for cloning arrays and objects. Since both are
-**reference types (and not primitives)**, copying them safely (i.e. preventing future mutation of the copied
-original) can be tricky. With the spread operator you have an easy way of creating a (shallow!) clone of the
+The spread operator is extremely useful for cloning arrays and objects. Since
+both are **reference types (and not primitives)**, copying them safely (i.e.
+preventing future mutation of the copied original) can be tricky. With the
+spread operator you have an easy way of creating a (shallow!) clone of the
 object or array.
 
 #### Destructuring
 
-Destructuring allows you to easily access the values of arrays or objects and assign them to variables.
+Destructuring allows you to easily access the values of arrays or objects and
+assign them to variables.
 
 Here's an example for an array:
 
@@ -708,7 +735,8 @@ console.log(age); // prints undefined
 console.log(myObj); // prints {name: 'Max', age: 28}
 ```
 
-Destructuring is very useful when working with function arguments. Consider this example:
+Destructuring is very useful when working with function arguments. Consider this
+example:
 
 ```js
 const printName = (personObj) => {
@@ -717,9 +745,10 @@ const printName = (personObj) => {
 printName({ name: "Max", age: 28 }); // prints 'Max'
 ```
 
-Here, we only want to print the name in the function but we pass a complete person object to the function. Of
-course this is no issue but it forces us to call personObj.name inside of our function. We can condense this
-code with destructuring:
+Here, we only want to print the name in the function but we pass a complete
+person object to the function. Of course this is no issue but it forces us to
+call personObj.name inside of our function. We can condense this code with
+destructuring:
 
 ```js
 const printName = ({ name }) => {
@@ -728,28 +757,38 @@ const printName = ({ name }) => {
 printName({ name: "Max", age: 28 }); // prints 'Max')
 ```
 
-We get the same result as above but we save some code. By destructuring, we simply pull out the `name` property
-and store it in a variable/ argument named `name` which we then can use in the function body.
+We get the same result as above but we save some code. By destructuring, we
+simply pull out the `name` property and store it in a variable/ argument named
+`name` which we then can use in the function body.
 
 ### JS Array Functions
 
 JavaScript array functions like `map()`, `filter()`, `reduce()`, etc.
 
-You'll see me use them quite a bit since a lot of React concepts rely on working with arrays
-(in immutable ways).
+You'll see me use them quite a bit since a lot of React concepts rely on working
+with arrays (in immutable ways).
 
-The following page gives a good overview over the various methods you can use on the array prototype
+The following page gives a good overview over the various methods you can use on
+the array prototype
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
 
 Particularly important in this course are:
 
-- `map()` => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
-- `find()` => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
-- `findIndex()` => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
-- `filter()` => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
-- `reduce()` => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce?v=b
-- `concat()` => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat?v=b
-- `slice()` => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
-- `splice()` => https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+- `map()` =>
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+- `find()` =>
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
+- `findIndex()` =>
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
+- `filter()` =>
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+- `reduce()` =>
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce?v=b
+- `concat()` =>
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat?v=b
+- `slice()` =>
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
+- `splice()` =>
+  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
 
 ### Module Resources

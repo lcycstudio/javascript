@@ -27,7 +27,7 @@ React is a **JavaScript** library for building **user interfaces**
 
 [React Demo](https://codesandbox.io/s/first-react-app-start-7ec9fd)
 
-![JavaScript to React](<https://github.com/lcycstudio/javascript/blob/master/React%20-%20The%20Complete%20Guide%202023%20(incl.%20React%20Router%20%26%20Redux)/01_getting_started/react-js.png>)
+![JavaScript to React](/React%20-%20The%20Complete%20Guide%202023/01_getting_started/react-js.png)
 
 #### Why not JavaScript?
 
@@ -44,13 +44,13 @@ With React, you **define the target UI state(s)** -- not the steps to get there
 
 Instead, React will figure out & perform the necessary steps
 
-![Declarative](<https://github.com/lcycstudio/javascript/blob/master/React%20-%20The%20Complete%20Guide%202023%20(incl.%20React%20Router%20%26%20Redux)/01_getting_started/declarative.png>)
+![Declarative](/React%20-%20The%20Complete%20Guide%202023/01_getting_started/declarative.png)
 
 ### Editing Our First React App
 
 ### About This Course & Course Outline
 
-![Course Content](<https://github.com/lcycstudio/javascript/blob/master/React%20-%20The%20Complete%20Guide%202023%20(incl.%20React%20Router%20%26%20Redux)/01_getting_started/course.png>)
+![Course Content](/React%20-%20The%20Complete%20Guide%202023/01_getting_started/course.png)
 
 ### The Two Ways (Paths) Of Taking This Course
 
@@ -64,8 +64,8 @@ Instead, React will figure out & perform the necessary steps
 
 - Create React projects locally on your system
 - Requires installation of tools & creation of files on your system
-- Use a locally installed code editor (e.g., VS Code) with any settings
-  and extensions of your choice
+- Use a locally installed code editor (e.g., VS Code) with any settings and
+  extensions of your choice
 
 #### Browser-based Setup
 
@@ -86,6 +86,7 @@ Instead, React will figure out & perform the necessary steps
 
 ### Using CodeSandbox For React Development (No Local Setup Required!)
 
-Navigate to the browser and enter `react.new` and select "React - CodeSandbox - react.new"
+Navigate to the browser and enter `react.new` and select "React - CodeSandbox -
+react.new"
 
 ### Module Resources
