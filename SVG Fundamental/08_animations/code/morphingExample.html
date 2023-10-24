@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <title>additive, accumulate [morphing example]</title> 
+  </head>
+<body>
+  <svg width="900" height="650">
+      <polyline points="1,1 1,50 50,50 50,1" >
+        <animate attributeName="points" 
+                 from="0,0 0,0 0,0 0,0" 
+                 to="66,2 100,90 50,194 16,106" 
+                 begin = "3s"
+                 dur="4s"
+                 additive="sum"
+                 accumulate="sum" 
+                 repeatCount="3"
+                 fill ="freeze"
+                 />
+    </polyline>
+  </svg>
+</body> 
+</html>

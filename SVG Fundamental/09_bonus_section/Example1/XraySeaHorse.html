@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+    <title> X-ray sea horse [mask animation] </title> 
+  </head>
+<body>
+  <svg width="900" height="650">
+    <image xlink:href="SeaHorseOriginal.jpg" width="100%" height="100%" />
+
+    <clipPath id="XrayMask">
+      <circle id="mask-circle" cx="50%" cy="50%" r="10%"/>
+    </clipPath>
+
+    <image clip-path="url(#XrayMask)" 
+           xlink:href="SeaHorseXray.jpg" 
+           width="100%" height="100%" />
+  </svg>
+
+	<script>
+    let animationObject = document.getElementById("mask-circle");
+    window.addEventListener('mousemove', function(e) {
+        animationObject.setAttribute("cx", e.pageX);
+        animationObject.setAttribute("cy", e.pageY);
+    }, false);
+  </script>
+</body>
+</html>
+

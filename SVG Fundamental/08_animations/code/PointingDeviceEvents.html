@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pointing device events example: [rotate]</title>
+  </head>
+  <body>
+    <svg width="900" height="600">
+      <polygon points="400,480 60,480 230,190" fill="blue">
+        <animateTransform
+          id="anim1"
+          attributeName="transform"
+          type="rotate"
+          begin="mousemove; anim2.end; click"
+          from="0 230 370"
+          to="360 230 370"
+          dur="0.3s"
+        />
+      </polygon>
+      <polygon points="860,480 520,480 690,190" fill="green">
+        <animateTransform
+          id="anim2"
+          attributeName="transform"
+          type="rotate"
+          begin="mousedown"
+          from="0 690 370"
+          to="360 690 370"
+          dur="0.3s"
+        />
+      </polygon>
+    </svg>
+  </body>
+</html>

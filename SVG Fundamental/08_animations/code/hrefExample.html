@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <title>'href' example: [blur]</title> 
+  </head>
+<body>
+  <svg width="800" height="600" filter="blur(25px) contrast(45)">
+    <defs>
+      <pattern id="AnimatedPattern" 
+        viewBox="0,0,300,300" width="24%" height="44%">
+        <g id="Objects4Animation">
+          <rect id="r1" x="0" y="0" width="300" height="300" 
+                fill="#fff"/>
+          <circle id="c1" cx="5" cy="5" r="90" fill="blue"/>
+          <circle id="c2" cx="105" cy="100" r="105" fill="blue"/>  
+          <circle id="c3" cx="35" cy="10" r="35" fill="blue"/>
+          <circle id="c4" cx="55" cy="30" r="45" fill="blue"/>
+        </g>
+
+        <g id="ApplyingAnimation">
+          <animate href="#c2" attributeName="r" 
+            begin="2s" dur="7s" repeatDur="24s"
+            values="175;50;60;30;75;50;175" fill="freeze"/>
+          <animateTransform href="#c1" attributeName="transform" 
+            type="rotate" dur="4s" max="15s" 
+            values="0,100,100; 360,150,80" repeatCount="5"/>
+          <animateTransform href="#c2" attributeName="transform" 
+            type="rotate" dur="6s" values="0,150,80;-720,150,80" 
+            repeatCount="indefinite"/>
+          <animateTransform href="#c3" attributeName="transform" 
+            type="rotate" dur="7s" values="0,150,80; 720,150,80" 
+            repeatCount="indefinite"/>
+          <animateTransform href="#c4" attributeName="transform" 
+            type="rotate" dur="24s" values="0,-720,80;720,150,80" 
+            repeatCount="indefinite"/>
+        </g>
+      </pattern>
+    </defs>
+
+    <rect cx="0"  cy="0" width="800" height="600" 
+      fill="url(#AnimatedPattern)"/>
+  </svg>
+</body> 
+</html>
+

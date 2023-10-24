@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <meta charset="UTF-8"> 
+    <title>'set' example: [circle2]</title> 
+  </head>
+<body>
+  <svg width="800" height="600">
+    <circle id="circle1" cx="400" cy="300" r="200" fill="none" 
+    stroke="blue" stroke-width="100" stroke-dasharray="15 15">
+      <animateTransform attributeName="transform" type="rotate"
+      begin="1s" dur="10s" from="0 400 300" to="360 400 300"/>
+    </circle> 
+
+    <circle id="circle2" cx="400" cy="300" r="100" fill="none"
+    stroke="green" stroke-width="70" stroke-dasharray="15 15">
+      <animateTransform attributeName="transform" type="rotate"
+      begin="1s" dur="10s" from="0 400 300" to="-720 400 300"/>
+     <discard begin="5s"/>
+    </circle>
+
+  </svg>
+</body> 
+</html>
+
