@@ -19,4 +19,10 @@
 
 ### How to get setup with Visual Studio Code?
 
+#### Extensions
+
+- [Node.js Exec](https://marketplace.visualstudio.com/items?itemName=miramac.vscode-exec-node)
+- [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+
 ### Whats V8 vs Chrome vs Node?
