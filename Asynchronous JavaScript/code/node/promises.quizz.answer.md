@@ -17,8 +17,8 @@ function readFile(filename, encoding) {
   });
 }
 readFile("./files/demofile.txt", "utf-8").then(
-  data => console.log("File Read", data),
-  err => console.error("Failed To Read File", err)
+  (data) => console.log("File Read", data),
+  (err) => console.error("Failed To Read File", err)
 );
 ```
 
@@ -52,13 +52,13 @@ function readFile(filename, encoding) {
 
 // Starting to look like callback hell?
 readFile("./files/demofile.txt", "utf-8").then(
-  data => {
+  (data) => {
     gzip(data).then(
-      res => console.log(res),
-      err => console.error("Failed To Zip", err)
+      (res) => console.log(res),
+      (err) => console.error("Failed To Zip", err)
     );
   },
-  err => console.error("Failed To Read", err)
+  (err) => console.error("Failed To Read", err)
 );
 ```
 
@@ -74,18 +74,18 @@ const gzip = util.promisify(zlib.gzip);
 
 readFile("./files/demofile.txt", "utf-8")
   .then(
-    data => {
+    (data) => {
       return gzip(data);
     },
-    err => {
+    (err) => {
       console.error("Failed To Read", err);
     }
   )
   .then(
-    data => {
+    (data) => {
       console.log(data);
     },
-    err => {
+    (err) => {
       console.error("Failed To Zip", err);
     }
   );
@@ -117,13 +117,13 @@ function readFile(filename, encoding) {
 }
 
 readFile("./demofile.txt2", "utf-8")
-  .then(data => {
+  .then((data) => {
     return gzip(data);
   })
-  .then(data => {
+  .then((data) => {
     console.log(data);
   })
-  .catch(err => {
+  .catch((err) => {
     console.error("Failed", err);
   });
 ```
@@ -154,13 +154,13 @@ function readFile(filename, encoding) {
 }
 
 readFile("./demofile.txt2", "utf-8")
-  .then(data => {
+  .then((data) => {
     return gzip(data);
   })
-  .then(data => {
+  .then((data) => {
     console.log(data);
   })
-  .catch(err => {
+  .catch((err) => {
     console.error("Failed", err);
   });
 ```
@@ -169,7 +169,7 @@ readFile("./demofile.txt2", "utf-8")
 
 ```js
 function readFileFake(sleep) {
-  return new Promise(resolve => setTimeout(resolve, sleep, "read"));
+  return new Promise((resolve) => setTimeout(resolve, sleep, "read"));
 }
 
 function timeout(sleep) {
@@ -177,8 +177,8 @@ function timeout(sleep) {
 }
 
 Promise.race([readFileFake(5000), timeout(1000)])
-  .then(data => console.log(data))
-  .catch(err => console.error(err));
+  .then((data) => console.log(data))
+  .catch((err) => console.error(err));
 ```
 
 # Answer 6
@@ -186,30 +186,30 @@ Promise.race([readFileFake(5000), timeout(1000)])
 ```js
 function authenticate() {
   console.log("Authenticating");
-  return new Promise(resolve => setTimeout(resolve, 2000, { status: 200 }));
+  return new Promise((resolve) => setTimeout(resolve, 2000, { status: 200 }));
 }
 
 function publish() {
   console.log("Publishing");
-  return new Promise(resolve => setTimeout(resolve, 2000, { status: 403 }));
+  return new Promise((resolve) => setTimeout(resolve, 2000, { status: 403 }));
 }
 
 function timeout(sleep) {
   return new Promise((resolve, reject) => setTimeout(reject, sleep, "timeout"));
 }
 
-Promise.race([publish(), timeout(1000)])
-  .then(res => {
+Promise.race([publish(), timeout(3000)])
+  .then((res) => {
     if (res.status === 403) {
       return authenticate();
     }
     return res;
   })
-  .then(res => {
+  .then((res) => {
     // Process save responce
     console.log("Published");
   })
-  .catch(err => {
+  .catch((err) => {
     if (err === "timeout") {
       console.error("Request timed out");
     } else {
@@ -223,12 +223,12 @@ Alternative answer with safePublish returning a publish promise
 ```js
 function authenticate() {
   console.log("Authenticating");
-  return new Promise(resolve => setTimeout(resolve, 2000, { status: 200 }));
+  return new Promise((resolve) => setTimeout(resolve, 2000, { status: 200 }));
 }
 
 function publish() {
   console.log("Publishing");
-  return new Promise(resolve => setTimeout(resolve, 2000, { status: 403 }));
+  return new Promise((resolve) => setTimeout(resolve, 2000, { status: 403 }));
 }
 
 function timeout(sleep) {
@@ -236,7 +236,7 @@ function timeout(sleep) {
 }
 
 function safePublish() {
-  return publish().then(res => {
+  return publish().then((res) => {
     if (res.status === 403) {
       return authenticate();
     }
@@ -245,11 +245,11 @@ function safePublish() {
 }
 
 Promise.race([safePublish(), timeout(1000)])
-  .then(res => {
+  .then((res) => {
     // Process save responce
     console.log("Published");
   })
-  .catch(err => {
+  .catch((err) => {
     if (err === "timeout") {
       console.error("Request timed out");
     } else {
