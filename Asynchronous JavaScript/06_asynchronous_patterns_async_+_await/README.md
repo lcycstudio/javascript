@@ -329,3 +329,7 @@ files = ["./demofile.txt", "./demofile.other.txt"];
 ```
 
 ### Async/Await - Warning
+
+Async functions are performant
+
+Write async functions in small blocks
