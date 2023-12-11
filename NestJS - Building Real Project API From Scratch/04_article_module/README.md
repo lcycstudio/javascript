@@ -875,7 +875,7 @@ export class UserEntity {
 ```
 
 ```bash
-yarn db:create AddFavoritesRelationsBetweenArticleAndUser
+yarn db:create src/migrations/AddFavoritesRelationsBetweenArticleAndUser
 yarn db:migrate
 ```
 

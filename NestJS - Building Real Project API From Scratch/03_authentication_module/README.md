@@ -52,7 +52,7 @@ Database Drop/Create/Migrate
 
 ```bash
 yarn db:drop
-yarn db:create CreateTags
+yarn db:create src/migrations/CreateTags
 ```
 
 ### Preparing register request
@@ -346,7 +346,7 @@ export class UserEntity {
 ```
 
 ```bash
-yarn db:create AddUsernameToUsers
+yarn db:create src/migrations/AddUsernameToUsers
 yarn db:migrate
 yarn db:drop
 yarn db:migrate
@@ -693,7 +693,7 @@ export const User = createParamDecorator((data: any, ctx: ExecutionContext) => {
   const request = ctx.switchToHttp().getRequest();
 
   if (!request.user) {
-    null;
+    return null;
   }
 
   if (data) {
